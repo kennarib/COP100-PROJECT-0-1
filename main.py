@@ -11,7 +11,8 @@ class CarFinder:
        "******")
        print("1. PRINT all Authorized Vehicles")
        print("2. SEARCH for Authorized Vehicle")
-       print("3. Exit")
+       print("3. ADD Authorized Vehicle")
+       print("4. Exit")
    def run(self):
        while True:
            self.display_menu()
@@ -26,6 +27,11 @@ class CarFinder:
                 print(f"{search_vehicle} is not an authorized vehicle, if you received this in error please check the spelling and try again")
                 print("********************************")
            elif choice == '3':
+                new_vehicle = input("Please Enter the full Vehicle name you would like to add:")
+                self.allowed_vehicles.append(new_vehicle)
+                print(f'You have added "{new_vehicle}" as an authorized vehicle')
+                print("********************************")
+           elif choice == '4':
                 print("Thank you for using the AutoCountry Vehicle Finder, good-bye!")
                 break
            else:
