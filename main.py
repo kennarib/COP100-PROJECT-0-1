@@ -1,6 +1,6 @@
 class CarFinder:
    def __init__(self):
-       self.allowed_vehicles = ['Ford F-150', 'Chevrolet Silverado', 'Tesla CyberTruck', 'Toyota Tundra', 'Nissan Titan']
+       self.allowed_vehicles = ['Ford F-150', 'Chevrolet Silverado', 'Tesla CyberTruck', 'Toyota Tundra', 'Nissan Titan', 'Rivian R1T', 'Ram 1500']
    def print_allowed_vehicles(self):
        print("The AutoCountry sales manager has authorized the purchase and selling of the following vehicles:")
        for vehicle in self.allowed_vehicles:
@@ -12,7 +12,8 @@ class CarFinder:
        print("1. PRINT all Authorized Vehicles")
        print("2. SEARCH for Authorized Vehicle")
        print("3. ADD Authorized Vehicle")
-       print("4. Exit")
+       print("4. DELETE Authorized Vehicle")
+       print("5. Exit")
    def run(self):
        while True:
            self.display_menu()
@@ -32,10 +33,22 @@ class CarFinder:
                 print(f'You have added "{new_vehicle}" as an authorized vehicle')
                 print("********************************")
            elif choice == '4':
+               delete_vehicle = input("Please Enter the full Vehicle name you would like to REMOVE: ")
+               if delete_vehicle in self.allowed_vehicles:
+                  confirm = input(f'Are you sure you want to remove "{delete_vehicle}" from the Authorized Vehicles List? (yes/no): ')
+                  if confirm.lower() == 'yes':
+                    self.allowed_vehicles.remove(delete_vehicle)
+                    print(f'You have REMOVED "{delete_vehicle}" as an authorized vehicle')
+                  else:
+                    print(f'"{delete_vehicle}" was not removed from the Authorized Vehicles List')
+               else:
+                print(f"{delete_vehicle} is not in the Authorized Vehicles List")
+               print("********************************")
+           elif choice == '5':
                 print("Thank you for using the AutoCountry Vehicle Finder, good-bye!")
                 break
            else:
-                print("Invalid input. Please enter 1, 2, or 3.") 
+                print("Invalid input. Please enter a number between 1 and 5") 
 
 if __name__ == "__main__":
    car_finder = CarFinder()
