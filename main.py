@@ -23,6 +23,49 @@ def save_vehicles(vehicles):
     """Save the list of vehicles back to the file."""
     with open(FILE_PATH, "w") as file:
         file.write("\n".join(vehicles))
+
+def print_all_vehicles(allowed_vehicles_list):
+    """Display all authorized vehicles."""
+    print("The AutoCountry sales manager has authorized the purchase and selling of the following vehicles:")
+    for vehicle in allowed_vehicles_list:
+        print(vehicle)
+    print("********************************")
+
+def search_vehicle(allowed_vehicles_list):
+    """Search for a specific vehicle."""
+    search_vehicle = input("Please Enter the full Vehicle name: ")
+    if search_vehicle in allowed_vehicles_list:
+        print(f"{search_vehicle} is an authorized vehicle")
+    else:
+        print(f"{search_vehicle} is not an authorized vehicle. Please check the spelling and try again.")
+    print("********************************")
+
+def add_vehicle(allowed_vehicles_list):
+    """Add a new vehicle to the list."""
+    new_vehicle = input("Please Enter the full Vehicle name you would like to add: ")
+    if new_vehicle not in allowed_vehicles_list:
+        allowed_vehicles_list.append(new_vehicle)
+        save_vehicles(allowed_vehicles_list)
+        print(f'You have added "{new_vehicle}" as an authorized vehicle.')
+    else:
+        print(f'"{new_vehicle}" is already in the Authorized Vehicles List.')
+    print("********************************")
+
+def delete_vehicle(allowed_vehicles_list):
+    """Delete a vehicle from the list."""
+    delete_vehicle = input("Please Enter the full Vehicle name you would like to REMOVE: ")
+    if delete_vehicle in allowed_vehicles_list:
+        confirm = input(f'Are you sure you want to remove "{delete_vehicle}" from the Authorized Vehicles List? (yes/no): ')
+        if confirm.lower() == 'yes':
+            allowed_vehicles_list.remove(delete_vehicle)
+            save_vehicles(allowed_vehicles_list)
+            print(f'You have REMOVED "{delete_vehicle}" as an authorized vehicle.')
+        else:
+            print(f'"{delete_vehicle}" was not removed from the Authorized Vehicles List.')
+    else:
+        print(f"{delete_vehicle} is not in the Authorized Vehicles List.")
+    print("********************************")
+
                    
 class CarFinder:
    def __init__(self):
