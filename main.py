@@ -1,3 +1,29 @@
+import os
+
+# File path for the Allowed Vehicles list
+FILE_PATH = "allowed_vehicles.txt"
+
+def load_vehicles():
+    """Load vehicles from the file into a list."""
+    if not os.path.exists(FILE_PATH):
+        # Create the file with default vehicles if it doesn't exist
+        with open(FILE_PATH, "w") as file:
+            file.write("\n".join([
+                'Ford F-150',
+                'Chevrolet Silverado',
+                'Tesla CyberTruck',
+                'Toyota Tundra',
+                'Rivian R1T',
+                'Ram 1500'
+            ]))
+    with open(FILE_PATH, "r") as file:
+        return [line.strip() for line in file.readlines()]
+
+def save_vehicles(vehicles):
+    """Save the list of vehicles back to the file."""
+    with open(FILE_PATH, "w") as file:
+        file.write("\n".join(vehicles))
+                   
 class CarFinder:
    def __init__(self):
        self.allowed_vehicles = ['Ford F-150', 'Chevrolet Silverado', 'Tesla CyberTruck', 'Toyota Tundra', 'Nissan Titan', 'Rivian R1T', 'Ram 1500']
